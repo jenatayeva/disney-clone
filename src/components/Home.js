@@ -15,12 +15,13 @@ import { selectUserName } from '../features/user/UserSlice';
 const Home = (props) => {
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
-  let recommends = [];
-  let newDisneys = [];
-  let originals = [];
-  let trending = [];
+  
 
   useEffect(() => {
+    let recommends = [];
+    let newDisneys = [];
+    let originals = [];
+    let trending = [];
     db.collection('movies').onSnapshot((snapshot) => {
       snapshot.docs.map((doc) =>{
         switch(doc.data().type) {
@@ -36,6 +37,8 @@ const Home = (props) => {
           case 'trending':
             trending = [...trending, {id: doc.id, ...doc.data()}]
             break;
+          default:
+            break;
         }
       })
 
@@ -44,7 +47,7 @@ const Home = (props) => {
       setMovies({
       recommend: recommends,
       newDisney: newDisneys,
-      origin: originals,
+      original: originals,
       trending: trending 
     })
     )

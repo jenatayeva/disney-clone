@@ -12,7 +12,7 @@ const Recommends = () => {
       <h4>Recommended for you</h4>
       <Content>
         {
-          movies && movies.map((movie, key) => (
+          movies  ? (movies.map((movie, key) => (
             <Wrap key={key}>
               {movie.id}
               <Link to={"/detail/" + movie.id}>
@@ -20,6 +20,9 @@ const Recommends = () => {
               </Link>
             </Wrap>
           ))
+          ) :(
+            <p>loading...</p>
+          )
         }
       </Content>
     </Container>

@@ -11,7 +11,7 @@ const Trending = () => {
       <h4>Trending</h4>
       <Content>
       {
-          movies && movies.map((movie, key) => (
+          movies  ? (movies.map((movie, key) => (
             <Wrap key={key}>
               {movie.id}
               <Link to={"/detail/" + movie.id}>
@@ -19,6 +19,9 @@ const Trending = () => {
               </Link>
             </Wrap>
           ))
+          ) :(
+            <p>loading...</p>
+          )
         }
       </Content>
     </Container>
